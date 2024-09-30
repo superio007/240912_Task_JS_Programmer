@@ -165,11 +165,15 @@ const dataJson = [
     "quantity": 50
   }
 ]
-// After updating the dataJson array
+let selectedRowId = null;
 localStorage.setItem('dataJson', JSON.stringify(dataJson));
+// After updating the dataJson array
+if(!localStorage.getItem('dataJson')){
+  localStorage.setItem('dataJson', JSON.stringify(dataJson));
+}
 document.addEventListener("DOMContentLoaded", function () {
   let ss = JSON.parse(localStorage.getItem(('dataJson')));
-  console.log(ss);
+  // console.log(ss.length);
   appendData(ss)
   let previousClick = null;
   let previousRow = null;
@@ -180,7 +184,19 @@ document.addEventListener("DOMContentLoaded", function () {
       if (previousRow && previousRow !== row_tr) {
         previousRow.style.backgroundColor = ""; // Reset to default background color
       }
-
+      selectedRowId = this.id;
+      document.querySelector('.fa-trash').addEventListener('click', () => {
+        if (selectedRowId) {
+          deleteData(selectedRowId); // Call deleteData with the selected row id
+        }
+      });
+      // document.querySelector('.fa-arrow-down').addEventListener('click', () => {
+      //   if (selectedRowId) {
+      //     rowDown(selectedRowId);
+      //   } else {
+      //     alert('Please select a row first.');
+      //   }
+      // });
       // Change the background color of the current row
       row_tr.style.backgroundColor = "#e6e8ff"; // Set the desired color
 
@@ -201,20 +217,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 function appendData(dataJson) {
-  // Get the table body where you want to append the rows
   const tableBody = document.querySelector('tbody');
-
-  // Loop through the JSON data and generate rows for each item
+  const currentRowCount = tableBody.rows.length; 
   dataJson.forEach((data, index) => {
     // Create a new row element
     const row = document.createElement('tr');
-    row.id = `row_${index + 1}`;
+    row.id = `row_${currentRowCount + index + 1}`; 
+    // row.id = `row_${index + 1}`;
     // Construct the inner HTML of the row with the data
     row.innerHTML = `
       <td>
         <i class="fa-solid fa-check" style="color: #939495"></i>
       </td>
-      <td>${index + 1}</td> <!-- Assuming you want to display row numbers -->
+      <td>${currentRowCount + index + 1}</td> <!-- Assuming you want to display row numbers -->
       <td>${data.chemical_name}</td>
       <td>${data.vendor}</td>
       <td>${data.density}</td>
@@ -236,4 +251,86 @@ function appendData(dataJson) {
     // Append the new row to the table body
     tableBody.appendChild(row);
   });
+}
+function saveData() {
+  const row_saveData = document.querySelectorAll('tbody tr');
+  
+  // Loop through each row and update the corresponding object in dataJson
+  row_saveData.forEach((row) => {
+    const rowId = row.id.replace('row_', ''); // Extract just the numeric part of the row ID
+    
+    // Find the corresponding object in the dataJson array by id
+    const updatedObject = dataJson.find(item => item.id == rowId);
+    
+    if (updatedObject) {
+      updatedObject.chemical_name = row.querySelector('td:nth-child(3)').textContent.trim();
+      updatedObject.vendor = row.querySelector('td:nth-child(4)').textContent.trim();
+      updatedObject.density = row.querySelector('td:nth-child(5)').textContent.trim();
+      updatedObject.viscosity = row.querySelector('td:nth-child(6) input').value.trim(); // Assuming viscosity is in an input field
+      updatedObject.packaging = row.querySelector('td:nth-child(7)').textContent.trim();
+      updatedObject.pack_size = row.querySelector('td:nth-child(8)').textContent.trim();
+      updatedObject.unit = row.querySelector('td:nth-child(9)').textContent.trim();
+      updatedObject.quantity = row.querySelector('td:nth-child(10)').textContent.trim();
+    }
+  });
+  
+  // Save the updated dataJson array to localStorage
+  localStorage.setItem('dataJson', JSON.stringify(updatedObject));
+  
+  console.log('Data saved to localStorage:', dataJson);
+}
+
+function deleteData(id) {
+  const rowId = id.replace('row_', ''); // Get the numeric part of the row ID
+  const index = dataJson.findIndex(item => item.id == rowId); // Find the index of the item
+  
+  if (index !== -1) {
+    // Remove the item from the dataJson array
+    dataJson.splice(index, 1);
+    
+    // Update the table in the DOM
+    document.getElementById(id).remove(); // Remove the row from the DOM
+    
+    // Update localStorage with the new dataJson array
+    localStorage.setItem('dataJson', JSON.stringify(dataJson));
+    
+    console.log('Deleted item with id:', rowId);
+  }
+}
+function saveformData(event) {
+  // Prevent the form from submitting to the server
+  event.preventDefault();
+
+  // Get the input values
+  const Chemical = document.getElementById('Chemical').value;
+  const Vender = document.getElementById('Vender').value;
+  const Density = document.getElementById('Density').value;
+  const Viscosity = document.getElementById('Viscosity').value;
+  const Packaging = document.getElementById('Packaging').value;
+  const Pack = document.getElementById('Pack').value;
+  const Unit = document.getElementById('Unit').value;
+  const Quantity = document.getElementById('Quantity').value;
+  let ss = JSON.parse(localStorage.getItem(('dataJson')));
+  // Create a new data entry
+  const addData = 
+    {
+      "id": ss.length + 1,
+      "chemical_name": Chemical,
+      "vendor": Vender,
+      "density": Density,
+      "viscosity": Viscosity,
+      "packaging": Packaging,
+      "pack_size": Pack,
+      "unit": Unit,
+      "quantity": Quantity
+    };
+  ss.push(addData);
+  // Append the new data to the table
+  appendData([addData]);
+  console.log(addData);
+  localStorage.setItem('dataJson', JSON.stringify(ss));
+
+  // Optionally, you can hide the form or reset the inputs after submission
+  document.querySelector('.form').reset(); // Clears the form inputs
+  document.querySelector('.form_div').classList.add('d-none'); // Hide the form
 }

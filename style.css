@@ -8,3 +8,21 @@
   border-collapse: collapse;
   padding: 8px;
 }
+/* pop up */
+.form_div{
+  position: absolute;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  background: #fafafa;
+  top: 0%;
+  /* left: 40%; */
+  width: 100vw;
+}
+.form{
+  display: grid;
+}
+.form input{
+  display: block;
+}

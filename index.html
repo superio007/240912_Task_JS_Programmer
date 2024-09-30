@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="index.js"></script>
+    <script src="index.js"></script>
     <script
       src="https://kit.fontawesome.com/74e6741759.js"
       crossorigin="anonymous"
@@ -39,13 +39,13 @@
             <i class="fa-solid fa-arrow-down" style="color: #939495"></i>
           </span>
           <span>
-            <i class="fa-solid fa-trash" style="color: #bf0303"></i>
+            <i id="trash" class="fa-solid fa-trash" style="color: #bf0303"></i>
           </span>
           <span>
-            <i class="fa-solid fa-rotate-right" style="color: #1d48cd"></i>
+            <i onclick="window.location.reload()" class="fa-solid fa-rotate-right" style="color: #1d48cd"></i>
           </span>
           <span>
-            <i class="fa-solid fa-floppy-disk" style="color: #1d48cd"></i>
+            <i onclick="saveData()" class="fa-solid fa-floppy-disk" style="color: #1d48cd"></i>
           </span>
         </div>
       </div>
@@ -69,5 +69,32 @@
         </tbody>
       </table>
     </div>
+    <div class="form_div d-none">
+      <h1 class="text-center">Enter your details!</h1>
+      <form class="form" id="chemicalForm">
+        <label for="Chemical">Chemical name</label>
+        <input type="text" id="Chemical" placeholder="Enter Chemical name" required>
+        <label for="Vender">Vendor</label>
+        <input type="text" id="Vender" placeholder="Enter Vendor" required>
+        <label for="Density">Density</label>
+        <input type="text" id="Density" placeholder="Density" required>
+        <label for="Viscosity">Viscosity</label>
+        <input type="text" id="Viscosity" placeholder="Viscosity" required>
+        <label for="Packaging">Packaging</label>
+        <input type="text" id="Packaging" placeholder="Packaging" required>
+        <label for="Pack">Pack size</label>
+        <input type="text" id="Pack" placeholder="Enter Pack size" required>
+        <label for="Unit">Unit</label>
+        <input type="text" id="Unit" placeholder="Enter Unit" required>
+        <label for="Quantity">Quantity</label>
+        <input type="text" id="Quantity" placeholder="Enter Quantity" required>
+        <button onclick="saveformData(event)" class="btn btn-primary mt-3" type="submit">Submit</button>
+      </form>      
+    </div>
   </body>
+  <script>
+    document.querySelector('.fa-plus').addEventListener('click',()=>{
+      document.querySelector('.form_div').classList.remove('d-none')
+    })
+  </script>
 </html>
