@@ -52,17 +52,20 @@
       <div class="Table ">
         <table class="w-100">
           <thead>
-            <th><i class="fa-solid fa-check" style="color: #939495"></i></th>
-            <th>Id</th>
-            <th class="chemicalName">Chemical name</th>
-            <th>Vendor</th>
-            <th>Density </br> <span class="meassure">g/cm³</span></th>
-            <th>Viscosity </br> <span class="meassure">m<sup>2</sup>/s</span></th>
-            <th>Packaging</th>
-            <th>Pack size</th>
-            <th>Unit</th>
-            <th>Quantity</th>
+            <tr>
+              <th><i class="fa-solid fa-check"></i></th>
+              <th onclick="sortData('id', this)">Id</th>
+              <th onclick="sortData('chemical_name', this)">Chemical name</th>
+              <th onclick="sortData('vendor', this)">Vendor</th>
+              <th onclick="sortFloatData('density', this)">Density</th>
+              <th onclick="sortFloatData('viscosity', this)">Viscosity</th>
+              <th onclick="sortData('packaging', this)">Packaging</th>
+              <th onclick="sortFloatData('pack_size', this)">Pack size</th>
+              <th onclick="sortData('unit', this)">Unit</th>
+              <th onclick="sortFloatData('quantity', this)">Quantity</th>
+            </tr>
           </thead>
+          
           <tbody>
             <!-- data will be loading from json  -->
           </tbody>

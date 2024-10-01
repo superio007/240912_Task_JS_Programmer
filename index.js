@@ -90,10 +90,11 @@ const dataJson = [
 ];
 let selectedRowId = null;
 // localStorage.setItem('dataJson', JSON.stringify(dataJson));
-// After updating the dataJson array
+// Check if localstage doesn't exist's then set table data from my dataJson array.
 if (!localStorage.getItem("dataJson")) {
   localStorage.setItem("dataJson", JSON.stringify(dataJson));
 }
+// To load table intially from local storage when page loads.
 document.addEventListener("DOMContentLoaded", function () {
   let ss = JSON.parse(localStorage.getItem("dataJson"));
   // console.log(ss.length);
@@ -136,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+// This function is used append data from localstorage into Dom element tbody.
 function appendData(dataJson) {
   const tableBody = document.querySelector("tbody");
   const currentRowCount = tableBody.rows.length;
@@ -173,7 +175,7 @@ function appendData(dataJson) {
     tableBody.appendChild(row);
   });
 }
-
+// To save data when changes has been done in Viscosity.
 function saveData() {
   const row_saveData = document.querySelectorAll("tbody tr"); // Get all the rows
 
@@ -228,6 +230,7 @@ function saveData() {
   });
   localStorage.setItem("dataJson", JSON.stringify(dataJson));
 }
+// Delete row when click on fa-trash only if row is selected. 
 function deleteData(id) {
   const rowId = id.replace("row_", ""); // Get the numeric part of the row ID
 
@@ -252,6 +255,7 @@ function deleteData(id) {
     localStorage.setItem("dataJson", JSON.stringify(dataJson));
   }
 }
+// This function is usefull when new data is added when i clicked on fa-plus.
 function saveformData(event) {
   event.preventDefault();
   const Chemical = document.getElementById("Chemical").value;
@@ -286,6 +290,7 @@ function saveformData(event) {
   document.querySelector(".form_div").classList.add("d-none"); // Hide the form
   window.location.reload();
 }
+// This function reattaches all the event listners back after we shift rows.
 function attachRowClickListeners() {
   let previousClick = null;
   let previousRow = null;
@@ -335,21 +340,21 @@ function attachRowClickListeners() {
     });
   });
 }
-
+// supporting function for deleteData function
 function trashEvent() {
   if (selectedRowId) {
     deleteData(selectedRowId);  // Call deleteData with the selected row id
   }
 }
-
+// this function is used to trigger arrowDown event.
 function arrowDownEvent(event) {
   rowDown(event, dataJson, selectedRowId);
 }
-
+// this function is used to trigger arrowUp event. 
 function arrowUpEvent(event) {
   rowUp(event, dataJson, selectedRowId);
 }
-
+// this function shifts selected row down by 1 position.
 function rowDown(event, dataJson, row_index) {
   event.preventDefault();
 
@@ -373,7 +378,7 @@ function rowDown(event, dataJson, row_index) {
 
   rearrangeData(dataJson);
 }
-
+// this function shifts selected row up by 1 position.
 function rowUp(event, dataJson, row_index) {
   event.preventDefault();
 
@@ -397,7 +402,7 @@ function rowUp(event, dataJson, row_index) {
 
   rearrangeData(dataJson);
 }
-
+// This function help dom to reload after shift row down or up.
 function rearrangeData(dataJson) {
   const tableBody = document.querySelector("tbody");
 
@@ -432,47 +437,84 @@ function rearrangeData(dataJson) {
   // Reattach event listeners after rearranging data
   attachRowClickListeners();
 }
+// function for toogle between asscending or dcending to  all colums consist of text formats.
+let isAscending = true; // Global toggle for sorting direction
+function sortData(column, headerElement) {
+  let ss = JSON.parse(localStorage.getItem("dataJson")) || [];
 
-function rowDown(event, dataJson, row_index) {
-  event.preventDefault();
+  // Sort based on the column and toggle the sorting order
+  ss.sort((a, b) => {
+    if (isAscending) {
+      return a[column] > b[column] ? 1 : -1; // Ascending order
+    } else {
+      return a[column] < b[column] ? 1 : -1; // Descending order
+    }
+  });
 
-  // Get the current index from the row ID
-  const index = parseInt(row_index.replace("row_", "")) - 1;
+  // Toggle the sorting direction for next time
+  isAscending = !isAscending;
 
-  // If it's the last item, move it to the first position
-  if (index === dataJson.length - 1) {
-    const lastElement = dataJson.pop(); // Remove the last element
-    dataJson.unshift(lastElement); // Add it to the start
-  } else if (index >= 0 && index < dataJson.length - 1) {
-    // Otherwise, swap with the next element
-    const temp = dataJson[index];
-    dataJson[index] = dataJson[index + 1];
-    dataJson[index + 1] = temp;
+  // Update localStorage with the sorted data
+  localStorage.setItem("dataJson", JSON.stringify(ss));
+
+  // Re-render the sorted data in the table
+  rearrangeData(ss);
+
+  // Reset sorting arrows for all headers
+  document.querySelectorAll("th").forEach(th => {
+    th.classList.remove("ascending", "descending");
+  });
+
+  // Add the appropriate class (ascending or descending) to the clicked header
+  if (isAscending) {
+    headerElement.classList.add("ascending");
+    headerElement.classList.remove("descending");
+  } else {
+    headerElement.classList.add("descending");
+    headerElement.classList.remove("ascending");
   }
-
-  // Re-render the data and re-attach listeners
-  rearrangeData(dataJson);
 }
+// function for toogle between asscending or dcending to  all colums consist of numbers formats.
+let isfloatAscending = {
+  density: true,
+  viscosity: true,
+  quantity: true
+};
+function sortFloatData(column, headerElement) {
+  let ss = JSON.parse(localStorage.getItem("dataJson")) || [];
 
-function rowUp(event, dataJson, row_index) {
-  event.preventDefault();
+  // Sort based on the column and toggle the sorting order
+  ss.sort((a, b) => {
+    let aVal = parseFloat(a[column]);
+    let bVal = parseFloat(b[column]);
 
-  // Get the current index from the row ID
-  const index = parseInt(row_index.replace("row_", "")) - 1;
+    if (isfloatAscending[column]) {
+      return aVal - bVal; // Ascending order for float
+    } else {
+      return bVal - aVal; // Descending order for float
+    }
+  });
 
-  // If it's the first item, move it to the last position
-  if (index === 0) {
-    const firstElement = dataJson.shift(); // Remove the first element
-    dataJson.push(firstElement); // Add it to the end
-  } else if (index > 0 && index < dataJson.length) {
-    // Otherwise, swap with the previous element
-    const temp = dataJson[index];
-    dataJson[index] = dataJson[index - 1];
-    dataJson[index - 1] = temp;
+  // Toggle the sorting direction for next time
+  isfloatAscending[column] = !isfloatAscending[column];
+
+  // Update localStorage with the sorted data
+  localStorage.setItem("dataJson", JSON.stringify(ss));
+
+  // Re-render the sorted data in the table
+  rearrangeData(ss);
+
+  // Reset sorting arrows for all headers
+  document.querySelectorAll("th").forEach(th => {
+    th.classList.remove("ascending", "descending");
+  });
+
+  // Add the appropriate class (ascending or descending) to the clicked header
+  if (isfloatAscending[column]) {
+    headerElement.classList.add("ascending");
+  } else {
+    headerElement.classList.add("descending");
   }
-
-  // Re-render the data and re-attach listeners
-  rearrangeData(dataJson);
 }
 
 
