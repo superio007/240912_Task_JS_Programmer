@@ -103,6 +103,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let previousRow = null;
   const tbody_row = document.querySelectorAll("tbody tr");
   tbody_row.forEach((row_tr) => {
+    row_tr.addEventListener("dblclick", function () {
+      logRowData(this);  // Log the row data on double-click
+    });
     row_tr.addEventListener("click", function () {
       // Reset the background color of the previously clicked row
       if (previousRow && previousRow !== row_tr) {
@@ -256,8 +259,44 @@ function deleteData(id) {
   }
 }
 // This function is usefull when new data is added when i clicked on fa-plus.
+// function saveformData(event) {
+//   event.preventDefault();
+//   const Chemical = document.getElementById("Chemical").value;
+//   const Vender = document.getElementById("Vender").value;
+//   const Density = document.getElementById("Density").value;
+//   const Viscosity = document.getElementById("Viscosity").value;
+//   const Packaging = document.getElementById("Packaging").value;
+//   const Pack = document.getElementById("Pack").value;
+//   const Unit = document.getElementById("Unit").value;
+//   const Quantity = document.getElementById("Quantity").value;
+
+//   let ss = JSON.parse(localStorage.getItem("dataJson")) || [];
+
+//   const addData = {
+//     id: ss.length + 1, // This increments the ID for new entries
+//     chemical_name: Chemical,
+//     vendor: Vender,
+//     density: Density,
+//     viscosity: Viscosity,
+//     packaging: Packaging,
+//     pack_size: Pack,
+//     unit: Unit,
+//     quantity: Quantity,
+//   };
+
+//   ss.push(addData); // Push the new entry into the array
+
+//   appendData([addData]); // Append the new row visually
+
+//   localStorage.setItem("dataJson", JSON.stringify(ss)); // Save the updated data to localStorage
+//   document.querySelector(".form").reset(); // Clear form inputs
+//   document.querySelector(".form_div").classList.add("d-none"); // Hide the form
+//   window.location.reload();
+// }
 function saveformData(event) {
   event.preventDefault();
+
+  const rowId = document.getElementById('rowId').value;  // Get the rowId from the hidden field
   const Chemical = document.getElementById("Chemical").value;
   const Vender = document.getElementById("Vender").value;
   const Density = document.getElementById("Density").value;
@@ -269,27 +308,45 @@ function saveformData(event) {
 
   let ss = JSON.parse(localStorage.getItem("dataJson")) || [];
 
-  const addData = {
-    id: ss.length + 1, // This increments the ID for new entries
-    chemical_name: Chemical,
-    vendor: Vender,
-    density: Density,
-    viscosity: Viscosity,
-    packaging: Packaging,
-    pack_size: Pack,
-    unit: Unit,
-    quantity: Quantity,
-  };
+  if (rowId) {
+    // If rowId exists, update the existing row
+    const numericRowId = parseInt(rowId.replace('row_', '')); // Convert rowId to a number
+    ss = ss.map(item => {
+      if (item.id === numericRowId) {
+        return {
+          id: numericRowId,
+          chemical_name: Chemical,
+          vendor: Vender,
+          density: Density,
+          viscosity: Viscosity,
+          packaging: Packaging,
+          pack_size: Pack,
+          unit: Unit,
+          quantity: Quantity
+        };
+      }
+      return item;
+    });
+  } else {
+    // If rowId doesn't exist, add a new row
+    const addData = {
+      id: ss.length + 1, // Increment the ID for new entries
+      chemical_name: Chemical,
+      vendor: Vender,
+      density: Density,
+      viscosity: Viscosity,
+      packaging: Packaging,
+      pack_size: Pack,
+      unit: Unit,
+      quantity: Quantity,
+    };
+    ss.push(addData); // Add new entry to the array
+  }
 
-  ss.push(addData); // Push the new entry into the array
-
-  appendData([addData]); // Append the new row visually
-
-  localStorage.setItem("dataJson", JSON.stringify(ss)); // Save the updated data to localStorage
-  document.querySelector(".form").reset(); // Clear form inputs
-  document.querySelector(".form_div").classList.add("d-none"); // Hide the form
-  window.location.reload();
+  localStorage.setItem("dataJson", JSON.stringify(ss)); // Save updated data to localStorage
+  window.location.reload(); // Refresh the page to reload the table with new data
 }
+
 // This function reattaches all the event listners back after we shift rows.
 function attachRowClickListeners() {
   let previousClick = null;
@@ -516,5 +573,36 @@ function sortFloatData(column, headerElement) {
     headerElement.classList.add("descending");
   }
 }
+// Add this function to log the row data
+function logRowData(row) {
+  const rowData = Array.from(row.children).map(td => td.textContent.trim());
+  const rownumberId = rowData[1];
+  // console.log(rowId);
+  editcompleteRow(rownumberId);
+}
 
+function editcompleteRow(rowId) {
+  const numericRowId = parseInt(rowId.replace('row_', ''));
+  const dataformlocalStorage = JSON.parse(localStorage.getItem("dataJson"));
+  let rowData = null;
+
+  // Find the row data by rowId
+  dataformlocalStorage.forEach((item) => {
+    if (item.id === numericRowId) {
+      rowData = item;
+    }
+  });
+
+  // Display the form and populate the fields with the row's data
+  document.querySelector('.form_div').classList.remove('d-none');
+  document.getElementById('rowId').value = rowId; // Set the rowId in the hidden field
+  document.getElementById('Chemical').value = rowData.chemical_name;
+  document.getElementById('Vender').value = rowData.vendor;
+  document.getElementById('Density').value = rowData.density;
+  document.getElementById('Viscosity').value = rowData.viscosity;
+  document.getElementById('Packaging').value = rowData.packaging;
+  document.getElementById('Pack').value = rowData.pack_size;
+  document.getElementById('Unit').value = rowData.unit;
+  document.getElementById('Quantity').value = rowData.quantity;
+}
 

@@ -75,6 +75,7 @@
     <div class="form_div d-none">
       <h1 class="text-center">Enter your details!</h1>
       <form class="form" id="chemicalForm">
+        <input type="hidden" id="rowId" value="">
         <label for="Chemical">Chemical name</label>
         <input type="text" id="Chemical" placeholder="Enter Chemical name" required>
         <label for="Vender">Vendor</label>
@@ -92,7 +93,7 @@
         <label for="Quantity">Quantity</label>
         <input type="text" id="Quantity" placeholder="Enter Quantity" required>
         <button onclick="saveformData(event)" class="btn btn-primary mt-3" type="submit">Submit</button>
-      </form>      
+      </form>            
     </div>
   </body>
   <script>
