@@ -57,6 +57,7 @@ th.descending:after {
   height: 100vh;
   background: #fafafa;
   top: 0%;
+  height: 100vh;
   /* left: 40%; */
   width: 100vw;
 }

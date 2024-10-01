@@ -181,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const tbody_row = document.querySelectorAll("tbody tr");
   tbody_row.forEach((row_tr) => {
     row_tr.addEventListener("dblclick", function () {
+      console.log(selectedRowId);
       logRowData(this);  // Log the row data on double-click
     });
     row_tr.addEventListener("click", function () {
@@ -657,7 +658,7 @@ function editcompleteRow(rowId) {
       rowData = item;
     }
   });
-
+  document.getElementById("Table_div").classList.add('d-none');
   // Display the form and populate the fields with the row's data
   document.querySelector('.form_div').classList.remove('d-none');
   document.getElementById('rowId').value = rowId; // Set the rowId in the hidden field
