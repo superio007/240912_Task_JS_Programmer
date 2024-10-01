@@ -24,50 +24,52 @@
   </head>
   <body>
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center px-5">
+      <div class="d-flex justify-content-between align-items-center mt-5 mb-3 px-5">
         <div>
           <h3>Chemical supplies</h3>
         </div>
-        <div class="d-flex justify-content-center gap-2">
+        <div class="d-flex justify-content-center gap-3">
           <span>
-            <i class="fa-solid fa-plus fa-lg" style="color: #1d48cd"></i>
+            <i class="fa-solid fa-plus fa-xl" style="color: #1d48cd"></i>
           </span>
           <span>
-            <i class="fa-solid fa-arrow-up" style="color: #939495"></i>
+            <i class="fa-solid fa-arrow-up fa-xl" style="color: #939495"></i>
           </span>
           <span>
-            <i class="fa-solid fa-arrow-down" style="color: #939495"></i>
+            <i class="fa-solid fa-arrow-down fa-xl" style="color: #939495"></i>
           </span>
           <span>
-            <i id="trash" class="fa-solid fa-trash" style="color: #bf0303"></i>
+            <i id="trash" class="fa-solid fa-trash fa-xl" style="color: #bf0303"></i>
           </span>
           <span>
-            <i onclick="window.location.reload()" class="fa-solid fa-rotate-right" style="color: #1d48cd"></i>
+            <i onclick="window.location.reload()" class="fa-solid fa-rotate-right fa-xl" style="color: #1d48cd"></i>
           </span>
           <span>
-            <i onclick="saveData()" class="fa-solid fa-floppy-disk" style="color: #1d48cd"></i>
+            <i onclick="saveData()" class="fa-solid fa-floppy-disk fa-xl" style="color: #1d48cd"></i>
           </span>
         </div>
       </div>
-      <table class="Table ">
-        <thead>
-          <th>
-            <i class="fa-solid fa-check" style="color: #939495"></i>
-          </th>
-          <th>Id</th>
-          <th>Chemical name</th>
-          <th>Vender</th>
-          <th>Density</th>
-          <th>Viscosity</th>
-          <th>Packaging</th>
-          <th>Pack size</th>
-          <th>Unit</th>
-          <th>Quantity</th>
-        </thead>
-        <tbody>
-          <!-- data will be loading from json  -->
-        </tbody>
-      </table>
+      <div class="Table ">
+        <table class="w-100">
+          <thead>
+            <th>
+              <i class="fa-solid fa-check" style="color: #939495"></i>
+            </th>
+            <th>Id</th>
+            <th class="chemicalName">Chemical name</th>
+            <th>Vender</th>
+            <th>Density </br> <span class="meassure">g/cm³</span></th>
+            <th>Viscosity </br> <span class="meassure">m<sup>2</sup>/s</span></th>
+            <th>Packaging</th>
+            <th>Pack size</th>
+            <th>Unit</th>
+            <th>Quantity</th>
+          </thead>
+          <tbody>
+            <!-- data will be loading from json  -->
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="form_div d-none">
       <h1 class="text-center">Enter your details!</h1>

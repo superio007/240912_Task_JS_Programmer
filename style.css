@@ -1,12 +1,44 @@
-.Table{
-    width: 100%;
-    margin-bottom: 1rem;
+body{
+  background:#fafaf5 !important;
 }
-.Table th,td,tr{
-  border: 1px black solid !important;
+.Table{
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    &:hover{
+      cursor: pointer;
+    }
+}
+.fa-solid{
+  &:hover{
+    cursor: pointer;
+  }
+}
+.table_border{
+  border: 1px solid rgba(0, 0, 0, 0.205) !important;
+  border-collapse: separate;
+  width: 90px;
+  display: inline-block;
+  padding: 6px;
+  background: transparent;
+}
+thead{
+  height: 6rem;
+}
+tbody{
+  background: #fff;
+}
+th,td,tr{
+  border: 1px black solid;
   text-align: center;
   border-collapse: collapse;
   padding: 8px;
+}
+.chemicalName{
+  border-right: 1px solid #f1f1ed;
+}
+.meassure{
+  color: #a3a396;
+  font-size:0.8rem;
 }
 /* pop up */
 .form_div{
@@ -25,4 +57,10 @@
 }
 .form input{
   display: block;
+}
+.fa-arrow-down:hover,.fa-arrow-up:hover{
+  color: #1d48cd !important;
+}
+#check,#table_id{
+  border-right: none !important;
 }
