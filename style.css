@@ -33,6 +33,14 @@ th,td,tr{
   border-collapse: collapse;
   padding: 8px;
 }
+th.ascending:after {
+  content: " \25B2"; /* Up arrow */
+}
+
+th.descending:after {
+  content: " \25BC"; /* Down arrow */
+}
+
 .chemicalName{
   border-right: 1px solid #f1f1ed;
 }
