@@ -55,10 +55,10 @@
             <tr>
               <th><i class="fa-solid fa-check"></i></th>
               <th onclick="sortData('id', this)">Id</th>
-              <th onclick="sortData('chemical_name', this)">Chemical name</th>
+              <th class="chemicalName" onclick="sortData('chemical_name', this)">Chemical name</th>
               <th onclick="sortData('vendor', this)">Vendor</th>
-              <th onclick="sortFloatData('density', this)">Density</th>
-              <th onclick="sortFloatData('viscosity', this)">Viscosity</th>
+              <th onclick="sortFloatData('density', this)">Density </br> <span class="meassure">g/m<sup>3</sup></span> </th>
+              <th onclick="sortFloatData('viscosity', this)">Viscosity </br> <span class="meassure">m<sup>2</sup>/s</span></th>
               <th onclick="sortData('packaging', this)">Packaging</th>
               <th onclick="sortFloatData('pack_size', this)">Pack size</th>
               <th onclick="sortData('unit', this)">Unit</th>
@@ -93,6 +93,7 @@
         <label for="Quantity">Quantity</label>
         <input type="text" id="Quantity" placeholder="Enter Quantity" required>
         <button onclick="saveformData(event)" class="btn btn-primary mt-3" type="submit">Submit</button>
+        <p class="mt-2 text-primary pointer" onclick="window.location.reload()">Back to home!</p>
       </form>            
     </div>
   </body>

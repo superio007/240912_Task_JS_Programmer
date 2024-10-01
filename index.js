@@ -1,91 +1,168 @@
 const dataJson = [
   {
-    id: 1,
-    chemical_name: "Sodium Hydroxide",
-    vendor: "ChemCorp",
-    density: "2.13",
-    viscosity: "78",
-    packaging: "Plastic Drum",
-    pack_size: "25",
-    unit: "kg",
-    quantity: 100,
+    "id": 1,
+    "chemical_name": "Sodium Hydroxide",
+    "vendor": "ChemCorp",
+    "density": "2.13",
+    "viscosity": "78",
+    "packaging": "Plastic Drum",
+    "pack_size": "25",
+    "unit": "kg",
+    "quantity": 100
   },
   {
-    id: 2,
-    chemical_name: "Hydrochloric Acid",
-    vendor: "LabChem",
-    density: "1.18",
-    viscosity: "1.6",
-    packaging: "Glass Bottle",
-    pack_size: "1",
-    unit: "L",
-    quantity: 50,
+    "id": 2,
+    "chemical_name": "Hydrochloric Acid",
+    "vendor": "LabChem",
+    "density": "1.18",
+    "viscosity": "1.6",
+    "packaging": "Glass Bottle",
+    "pack_size": "1",
+    "unit": "L",
+    "quantity": 50
   },
   {
-    id: 3,
-    chemical_name: "Sulfuric Acid",
-    vendor: "ChemSupplier",
-    density: "1.84",
-    viscosity: "26.7",
-    packaging: "Steel Drum",
-    pack_size: "200",
-    unit: "L",
-    quantity: 30,
+    "id": 3,
+    "chemical_name": "Sulfuric Acid",
+    "vendor": "ChemSupplier",
+    "density": "1.84",
+    "viscosity": "26.7",
+    "packaging": "Steel Drum",
+    "pack_size": "200",
+    "unit": "L",
+    "quantity": 30
   },
   {
-    id: 4,
-    chemical_name: "Acetone",
-    vendor: "Chemical Solutions",
-    density: "0.79",
-    viscosity: "0.32",
-    packaging: "Plastic Jerrycan",
-    pack_size: "5",
-    unit: "L",
-    quantity: 200,
+    "id": 4,
+    "chemical_name": "Acetone",
+    "vendor": "Chemical Solutions",
+    "density": "0.79",
+    "viscosity": "0.32",
+    "packaging": "Plastic Jerrycan",
+    "pack_size": "5",
+    "unit": "L",
+    "quantity": 200
   },
   {
-    id: 5,
-    chemical_name: "Ethanol",
-    vendor: "PureChem",
-    density: "0.789",
-    viscosity: "1.2",
-    packaging: "Glass Bottle",
-    pack_size: "2",
-    unit: "L",
-    quantity: 80,
+    "id": 5,
+    "chemical_name": "Ethanol",
+    "vendor": "PureChem",
+    "density": "0.789",
+    "viscosity": "1.2",
+    "packaging": "Glass Bottle",
+    "pack_size": "2",
+    "unit": "L",
+    "quantity": 80
   },
   {
-    id: 6,
-    chemical_name: "Benzene",
-    vendor: "EcoChem",
-    density: "0.876",
-    viscosity: "0.65",
-    packaging: "Steel Barrel",
-    pack_size: "150",
-    unit: "L",
-    quantity: 120,
+    "id": 6,
+    "chemical_name": "Benzene",
+    "vendor": "EcoChem",
+    "density": "0.876",
+    "viscosity": "0.65",
+    "packaging": "Steel Barrel",
+    "pack_size": "150",
+    "unit": "L",
+    "quantity": 120
   },
   {
-    id: 7,
-    chemical_name: "Methanol",
-    vendor: "CleanChem",
-    density: "0.792",
-    viscosity: "0.59",
-    packaging: "Plastic Canister",
-    pack_size: "10",
-    unit: "L",
-    quantity: 60,
+    "id": 7,
+    "chemical_name": "Methanol",
+    "vendor": "CleanChem",
+    "density": "0.792",
+    "viscosity": "0.59",
+    "packaging": "Plastic Canister",
+    "pack_size": "10",
+    "unit": "L",
+    "quantity": 60
   },
   {
-    id: 8,
-    chemical_name: "Toluene",
-    vendor: "ChemSolutions",
-    density: "0.87",
-    viscosity: "0.59",
-    packaging: "Plastic Drum",
-    pack_size: "50",
-    unit: "L",
-    quantity: 40,
+    "id": 8,
+    "chemical_name": "Toluene",
+    "vendor": "ChemSolutions",
+    "density": "0.87",
+    "viscosity": "0.59",
+    "packaging": "Plastic Drum",
+    "pack_size": "50",
+    "unit": "L",
+    "quantity": 40
+  },
+  {
+    "id": 9,
+    "chemical_name": "Phosphoric Acid",
+    "vendor": "LabChem",
+    "density": "1.88",
+    "viscosity": "3.3",
+    "packaging": "Glass Bottle",
+    "pack_size": "1",
+    "unit": "L",
+    "quantity": 100
+  },
+  {
+    "id": 10,
+    "chemical_name": "Ammonium Hydroxide",
+    "vendor": "ChemCorp",
+    "density": "0.91",
+    "viscosity": "0.56",
+    "packaging": "Plastic Drum",
+    "pack_size": "25",
+    "unit": "kg",
+    "quantity": 150
+  },
+  {
+    "id": 11,
+    "chemical_name": "Formic Acid",
+    "vendor": "GreenChem",
+    "density": "1.22",
+    "viscosity": "1.57",
+    "packaging": "Glass Bottle",
+    "pack_size": "1",
+    "unit": "L",
+    "quantity": 70
+  },
+  {
+    "id": 12,
+    "chemical_name": "Potassium Hydroxide",
+    "vendor": "ChemMasters",
+    "density": "2.04",
+    "viscosity": "70",
+    "packaging": "Steel Drum",
+    "pack_size": "30",
+    "unit": "kg",
+    "quantity": 90
+  },
+  {
+    "id": 13,
+    "chemical_name": "Nitric Acid",
+    "vendor": "EcoChem",
+    "density": "1.51",
+    "viscosity": "1.2",
+    "packaging": "Plastic Canister",
+    "pack_size": "5",
+    "unit": "L",
+    "quantity": 110
+  },
+  {
+    "id": 14,
+    "chemical_name": "Chloroform",
+    "vendor": "Chemical Solutions",
+    "density": "1.49",
+    "viscosity": "0.56",
+    "packaging": "Glass Bottle",
+    "pack_size": "1",
+    "unit": "L",
+    "quantity": 50
+  },
+  {
+    "id": 15,
+    "chemical_name": "Glycerol",
+    "vendor": "BioChem",
+    "density": "1.50",
+    "viscosity": "0.59",
+    "packaging": "Glass Bottle",
+    "pack_size": "1",
+    "unit": "L",
+    "quantity": 50
   }
 ];
 let selectedRowId = null;
@@ -157,12 +234,21 @@ function appendData(dataJson) {
       <td id="table_id">${currentRowCount + index + 1}</td> 
       <td class="chemicalName">${data.chemical_name}</td>
       <td>${data.vendor}</td>
-      <td><span class="table_border">${data.density}</span></td>
       <td style="width: 100px">
         <input
           type="text"
           name=""
-          class="table_border"
+          class="table_border text-center"
+          id=""
+          style="width: 90px"
+          value="${data.density}"
+        />
+      </td>
+      <td style="width: 100px">
+        <input
+          type="text"
+          name=""
+          class="table_border text-center"
           id=""
           style="width: 90px"
           value="${data.viscosity}"
@@ -171,7 +257,16 @@ function appendData(dataJson) {
       <td>${data.packaging}</td>
       <td>${data.pack_size}</td>
       <td>${data.unit}</td>
-      <td><span class="table_border">${data.quantity}</span></td>
+      <td style="width: 100px">
+        <input
+          type="text"
+          name=""
+          class="table_border text-center"
+          id=""
+          style="width: 90px"
+          value="${data.quantity}"
+        />
+      </td>
     `;
 
     // Append the new row to the table body
@@ -198,8 +293,8 @@ function saveData() {
         .querySelector("td:nth-child(4)")
         .textContent.trim();
       updatedObject.density = row
-        .querySelector("td:nth-child(5)")
-        .textContent.trim();
+        .querySelector("td:nth-child(5) input")
+        .value.trim();
       updatedObject.viscosity = row
         .querySelector("td:nth-child(6) input")
         .value.trim(); // Assuming viscosity is in an input field
@@ -213,20 +308,20 @@ function saveData() {
         .querySelector("td:nth-child(9)")
         .textContent.trim();
       updatedObject.quantity = row
-        .querySelector("td:nth-child(10)")
-        .textContent.trim();
+        .querySelector("td:nth-child(10) input")
+        .value.trim();
     } else {
       // If the object is not found in dataJson, it's a new entry, so add it to dataJson
       const newObject = {
         id: parseInt(rowId), // Convert the rowId to a number
         chemical_name: row.querySelector("td:nth-child(3)").textContent.trim(),
         vendor: row.querySelector("td:nth-child(4)").textContent.trim(),
-        density: row.querySelector("td:nth-child(5)").textContent.trim(),
+        density: row.querySelector("td:nth-child(5)").value.trim(),
         viscosity: row.querySelector("td:nth-child(6) input").value.trim(),
         packaging: row.querySelector("td:nth-child(7)").textContent.trim(),
         pack_size: row.querySelector("td:nth-child(8)").textContent.trim(),
         unit: row.querySelector("td:nth-child(9)").textContent.trim(),
-        quantity: row.querySelector("td:nth-child(10)").textContent.trim(),
+        quantity: row.querySelector("td:nth-child(10)").value.trim(),
       };
       dataJson.push(newObject); // Add the new object to the array
     }
@@ -259,40 +354,6 @@ function deleteData(id) {
   }
 }
 // This function is usefull when new data is added when i clicked on fa-plus.
-// function saveformData(event) {
-//   event.preventDefault();
-//   const Chemical = document.getElementById("Chemical").value;
-//   const Vender = document.getElementById("Vender").value;
-//   const Density = document.getElementById("Density").value;
-//   const Viscosity = document.getElementById("Viscosity").value;
-//   const Packaging = document.getElementById("Packaging").value;
-//   const Pack = document.getElementById("Pack").value;
-//   const Unit = document.getElementById("Unit").value;
-//   const Quantity = document.getElementById("Quantity").value;
-
-//   let ss = JSON.parse(localStorage.getItem("dataJson")) || [];
-
-//   const addData = {
-//     id: ss.length + 1, // This increments the ID for new entries
-//     chemical_name: Chemical,
-//     vendor: Vender,
-//     density: Density,
-//     viscosity: Viscosity,
-//     packaging: Packaging,
-//     pack_size: Pack,
-//     unit: Unit,
-//     quantity: Quantity,
-//   };
-
-//   ss.push(addData); // Push the new entry into the array
-
-//   appendData([addData]); // Append the new row visually
-
-//   localStorage.setItem("dataJson", JSON.stringify(ss)); // Save the updated data to localStorage
-//   document.querySelector(".form").reset(); // Clear form inputs
-//   document.querySelector(".form_div").classList.add("d-none"); // Hide the form
-//   window.location.reload();
-// }
 function saveformData(event) {
   event.preventDefault();
 
@@ -478,14 +539,18 @@ function rearrangeData(dataJson) {
       <td>${index + 1}</td>
       <td class="chemicalName">${data.chemical_name}</td>
       <td>${data.vendor}</td>
-      <td><span class="table_border">${data.density}</span></td>
       <td style="width: 100px">
-        <input type="text" class="table_border" style="width: 90px" value="${data.viscosity}">
+        <input type="text" class="table_border text-center" style="width: 90px" value="${data.density}">
+      </td>
+      <td style="width: 100px">
+        <input type="text" class="table_border text-center" style="width: 90px" value="${data.viscosity}">
       </td>
       <td>${data.packaging}</td>
       <td>${data.pack_size}</td>
       <td>${data.unit}</td>
-      <td><span class="table_border">${data.quantity}</span></td>
+      <td style="width: 100px">
+        <input type="text" class="table_border text-center" style="width: 90px" value="${data.quantity}">
+      </td>
     `;
 
     tableBody.appendChild(row);

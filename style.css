@@ -8,7 +8,7 @@ body{
       cursor: pointer;
     }
 }
-.fa-solid{
+.fa-solid,.pointer{
   &:hover{
     cursor: pointer;
   }
