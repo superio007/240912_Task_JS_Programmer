@@ -356,7 +356,7 @@ function deleteData(id) {
 }
 // This function is usefull when new data is added when i clicked on fa-plus.
 function saveformData(event) {
-  event.preventDefault();
+  // event.preventDefault();
 
   const rowId = document.getElementById('rowId').value;  // Get the rowId from the hidden field
   const Chemical = document.getElementById("Chemical").value;
@@ -479,7 +479,7 @@ function rowDown(event, dataJson, row_index) {
 
   const index = parseInt(row_index.replace("row_", "")) - 1;
 
-  if (index < 0 || index >= dataJson.length - 1) {
+  if (index < 0 || index >= dataJson.length) {
     console.log("Invalid index");
     return;
   }
@@ -495,7 +495,7 @@ function rowDown(event, dataJson, row_index) {
     dataJson[index + 1] = temp;
   }
 
-  rearrangeData(dataJson);
+  rearrangeData(dataJson); // Re-render the table with the updated data
 }
 // this function shifts selected row up by 1 position.
 function rowUp(event, dataJson, row_index) {
@@ -503,7 +503,7 @@ function rowUp(event, dataJson, row_index) {
 
   const index = parseInt(row_index.replace("row_", "")) - 1;
 
-  if (index <= 0 || index >= dataJson.length) {
+  if (index < 0 || index >= dataJson.length) {
     console.log("Invalid index");
     return;
   }
@@ -519,7 +519,7 @@ function rowUp(event, dataJson, row_index) {
     dataJson[index - 1] = temp;
   }
 
-  rearrangeData(dataJson);
+  rearrangeData(dataJson); // Re-render the table with the updated data
 }
 // This function help dom to reload after shift row down or up.
 function rearrangeData(dataJson) {

@@ -92,14 +92,35 @@
         <input type="text" id="Unit" placeholder="Enter Unit" required>
         <label for="Quantity">Quantity</label>
         <input type="text" id="Quantity" placeholder="Enter Quantity" required>
-        <button onclick="saveformData(event)" class="btn btn-primary mt-3" type="submit">Submit</button>
+        <button onclick="checksformFields()" class="btn btn-primary mt-3" type="submit">Submit</button>
         <p class="mt-2 text-primary pointer" onclick="window.location.reload()">Back to home!</p>
       </form>            
     </div>
   </body>
   <script>
-    document.querySelector('.fa-plus').addEventListener('click',()=>{
-      document.querySelector('.form_div').classList.remove('d-none')
-    })
+    document.querySelector('.fa-plus').addEventListener('click', () => {
+      document.querySelector('.form_div').classList.remove('d-none');
+    });
+    function checkFields() {
+      const inputs = document.querySelectorAll('#chemicalForm input[required]');
+      let allFilled = true;
+
+      inputs.forEach((item) => {
+        if (item.value.trim() === '') {
+          allFilled = false;
+        }
+      });
+
+      return allFilled;
+    }
+    function checksformFields(){
+      if (checkFields()) {
+        console.log("Form submitted successfully!");
+        saveformData(event);
+      } else {
+        alert('Please fill all the required fields.');
+      }
+    }
   </script>
+    
 </html>
