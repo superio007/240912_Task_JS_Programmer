@@ -81,17 +81,17 @@
         <label for="Vender">Vendor</label>
         <input type="text" id="Vender" placeholder="Enter Vendor" required>
         <label for="Density">Density</label>
-        <input type="text" id="Density" placeholder="Density" required>
+        <input type="number" id="Density" placeholder="Density" step="0.10" required>
         <label for="Viscosity">Viscosity</label>
-        <input type="text" id="Viscosity" placeholder="Viscosity" required>
+        <input type="number" id="Viscosity" placeholder="Viscosity" step="0.10" required>
         <label for="Packaging">Packaging</label>
         <input type="text" id="Packaging" placeholder="Packaging" required>
         <label for="Pack">Pack size</label>
-        <input type="text" id="Pack" placeholder="Enter Pack size" required>
+        <input type="number" id="Pack" placeholder="Enter Pack size" step="0.10" required>
         <label for="Unit">Unit</label>
         <input type="text" id="Unit" placeholder="Enter Unit" required>
         <label for="Quantity">Quantity</label>
-        <input type="text" id="Quantity" placeholder="Enter Quantity" required>
+        <input type="number" id="Quantity" placeholder="Enter Quantity" step="0.10" required>
         <button onclick="checksformFields()" class="btn btn-primary mt-3" type="submit">Submit</button>
         <p class="mt-2 text-primary pointer" onclick="window.location.reload()">Back to home!</p>
       </form>            

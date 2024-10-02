@@ -275,6 +275,60 @@ function appendData(dataJson) {
   });
 }
 // To save data when changes has been done in Viscosity.
+// function saveData() {
+//   const row_saveData = document.querySelectorAll("tbody tr"); // Get all the rows
+
+//   // Loop through each row and either update or add the corresponding object in dataJson
+//   row_saveData.forEach((row) => {
+//     const rowId = row.id.replace("row_", ""); // Extract the numeric part of the row ID
+
+//     // Find the corresponding object in the dataJson array by ID
+//     let updatedObject = dataJson.find((item) => item.id == rowId);
+
+//     if (updatedObject) {
+//       // Update the object with the current table values if it exists in dataJson
+//       updatedObject.chemical_name = row
+//         .querySelector("td:nth-child(3)")
+//         .textContent.trim();
+//       updatedObject.vendor = row
+//         .querySelector("td:nth-child(4)")
+//         .textContent.trim();
+//       updatedObject.density = row
+//         .querySelector("td:nth-child(5) input")
+//         .value.trim();
+//       updatedObject.viscosity = row
+//         .querySelector("td:nth-child(6) input")
+//         .value.trim(); // Assuming viscosity is in an input field
+//       updatedObject.packaging = row
+//         .querySelector("td:nth-child(7)")
+//         .textContent.trim();
+//       updatedObject.pack_size = row
+//         .querySelector("td:nth-child(8)")
+//         .textContent.trim();
+//       updatedObject.unit = row
+//         .querySelector("td:nth-child(9)")
+//         .textContent.trim();
+//       updatedObject.quantity = row
+//         .querySelector("td:nth-child(10) input")
+//         .value.trim();
+//     } else {
+//       // If the object is not found in dataJson, it's a new entry, so add it to dataJson
+//       const newObject = {
+//         id: parseInt(rowId), // Convert the rowId to a number
+//         chemical_name: row.querySelector("td:nth-child(3)").textContent.trim(),
+//         vendor: row.querySelector("td:nth-child(4)").textContent.trim(),
+//         density: row.querySelector("td:nth-child(5)").value.trim(),
+//         viscosity: row.querySelector("td:nth-child(6) input").value.trim(),
+//         packaging: row.querySelector("td:nth-child(7)").textContent.trim(),
+//         pack_size: row.querySelector("td:nth-child(8)").textContent.trim(),
+//         unit: row.querySelector("td:nth-child(9)").textContent.trim(),
+//         quantity: row.querySelector("td:nth-child(10)").value.trim(),
+//       };
+//       dataJson.push(newObject); // Add the new object to the array
+//     }
+//   });
+//   localStorage.setItem("dataJson", JSON.stringify(dataJson));
+// }
 function saveData() {
   const row_saveData = document.querySelectorAll("tbody tr"); // Get all the rows
 
@@ -317,18 +371,23 @@ function saveData() {
         id: parseInt(rowId), // Convert the rowId to a number
         chemical_name: row.querySelector("td:nth-child(3)").textContent.trim(),
         vendor: row.querySelector("td:nth-child(4)").textContent.trim(),
-        density: row.querySelector("td:nth-child(5)").value.trim(),
-        viscosity: row.querySelector("td:nth-child(6) input").value.trim(),
+        density: row.querySelector("td:nth-child(5) input").value.trim(), // Input field for density
+        viscosity: row.querySelector("td:nth-child(6) input").value.trim(), // Input field for viscosity
         packaging: row.querySelector("td:nth-child(7)").textContent.trim(),
         pack_size: row.querySelector("td:nth-child(8)").textContent.trim(),
         unit: row.querySelector("td:nth-child(9)").textContent.trim(),
-        quantity: row.querySelector("td:nth-child(10)").value.trim(),
+        quantity: row.querySelector("td:nth-child(10) input").value.trim(), // Input field for quantity
       };
       dataJson.push(newObject); // Add the new object to the array
     }
   });
+
+  // Save the updated data to localStorage
   localStorage.setItem("dataJson", JSON.stringify(dataJson));
+
+  console.log("Data saved successfully!");
 }
+
 // Delete row when click on fa-trash only if row is selected. 
 function deleteData(id) {
   const rowId = id.replace("row_", ""); // Get the numeric part of the row ID
@@ -646,7 +705,7 @@ function logRowData(row) {
   // console.log(rowId);
   editcompleteRow(rownumberId);
 }
-
+// this function is used to update enitre row details
 function editcompleteRow(rowId) {
   const numericRowId = parseInt(rowId.replace('row_', ''));
   const dataformlocalStorage = JSON.parse(localStorage.getItem("dataJson"));
@@ -671,4 +730,3 @@ function editcompleteRow(rowId) {
   document.getElementById('Unit').value = rowData.unit;
   document.getElementById('Quantity').value = rowData.quantity;
 }
-
